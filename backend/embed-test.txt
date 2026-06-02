@@ -1,0 +1,32 @@
+text-embedding-004: 404 {
+  "error": {
+    "code": 404,
+    "message": "models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of ava
+
+embedding-001: 404 {
+  "error": {
+    "code": 404,
+    "message": "models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of availabl
+
+gemini-embedding-001: 200 {
+  "embedding": {
+    "values": [
+      -0.008958523,
+      -0.007950606,
+      0.019478967,
+      -0.055917874,
+      0.01935889,
+      -0.0067725736,
+      0.0054035536,
+      0.0021163241,
+      0
+
+text-embedding-005: 404 {
+  "error": {
+    "code": 404,
+    "message": "models/text-embedding-005 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of ava
+
+gemini-2.0-flash: 404 {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-2.0-flash is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of avail

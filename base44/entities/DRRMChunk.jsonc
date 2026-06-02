@@ -1,0 +1,151 @@
+{
+  "name": "DRRMChunk",
+  "type": "object",
+  "properties": {
+    "chunk_id": {
+      "type": "string",
+      "description": "Unique identifier e.g. FLOOD_DURING_01"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "PAGASA",
+        "NDRRMC",
+        "DILG",
+        "LGU_MDRRMO",
+        "Barangay_DRRM",
+        "OCD",
+        "Other"
+      ],
+      "description": "Source agency type"
+    },
+    "agency_office": {
+      "type": "string",
+      "description": "Specific office or organization"
+    },
+    "doc_title": {
+      "type": "string",
+      "description": "Title of source document"
+    },
+    "doc_year": {
+      "type": "string",
+      "description": "Year of source document"
+    },
+    "page_section": {
+      "type": "string",
+      "description": "Page, section, or URL location"
+    },
+    "hazard_type": {
+      "type": "string",
+      "enum": [
+        "Flood",
+        "Typhoon",
+        "Storm_Surge",
+        "Earthquake",
+        "Fire",
+        "Landslide",
+        "Volcanic",
+        "All_Hazards"
+      ],
+      "description": "Type of hazard"
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "Before",
+        "During",
+        "After",
+        "Before_During",
+        "All_Phases"
+      ],
+      "description": "Disaster phase"
+    },
+    "original_text": {
+      "type": "string",
+      "description": "Source-based English/official text"
+    },
+    "localized_text": {
+      "type": "string",
+      "description": "Cebuano-English version for chatbot use"
+    },
+    "format_type": {
+      "type": "string",
+      "enum": [
+        "instruction",
+        "checklist",
+        "step_list",
+        "explanation",
+        "hotline",
+        "warning",
+        "local_info"
+      ],
+      "description": "Format of the content"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "default": "Medium"
+    },
+    "validation_status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Approved",
+        "Rejected",
+        "For_Local_Validation"
+      ],
+      "default": "Pending"
+    },
+    "source_url": {
+      "type": "string",
+      "description": "Link or file source reference"
+    },
+    "date_accessed": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the source was accessed"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Validation notes"
+    }
+  },
+  "required": [
+    "chunk_id",
+    "hazard_type",
+    "localized_text"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.validation_status": "Approved"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

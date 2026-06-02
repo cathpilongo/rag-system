@@ -1,0 +1,85 @@
+{
+  "name": "ChatLog",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Anonymous session identifier"
+    },
+    "user_query": {
+      "type": "string",
+      "description": "The question asked by the user"
+    },
+    "retrieved_chunk_ids": {
+      "type": "string",
+      "description": "Comma-separated chunk IDs that were retrieved"
+    },
+    "retrieved_topics": {
+      "type": "string",
+      "description": "Hazard types / topics of retrieved chunks"
+    },
+    "bot_response": {
+      "type": "string",
+      "description": "The chatbot's response"
+    },
+    "is_fallback": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the fallback response was used"
+    },
+    "user_rating": {
+      "type": "number",
+      "description": "Optional user rating 1-5"
+    },
+    "remarks": {
+      "type": "string",
+      "description": "Optional user remarks"
+    }
+  },
+  "required": [
+    "session_id",
+    "user_query",
+    "bot_response"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
